@@ -66,5 +66,13 @@ namespace ti89
                 Limpar();
             }
         }
+
+        private void btnAlterar_Click(object sender, EventArgs e)
+        {
+            Cliente us = new Cliente(Convert.ToInt32(txtId.Text),txtNome.Text,txtEmail.Text);
+            us.Alterar();
+            MessageBox.Show(us.mensagem, "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Limpar();
+        }
     }
 }

@@ -5,7 +5,7 @@ using MySql.Data.MySqlClient;
 
 namespace ti89
 {
-    class Cliente
+     public class Cliente
     {
         //declaração de variaveis
         public int id;
@@ -46,12 +46,25 @@ namespace ti89
             comm.ExecuteNonQuery();
             mensagem = "Cadastro Realizado com Sucesso!";
             //retorno o auto_incremento
-            comm = new MySqlCommand("select max(id) from Cadastro",Banco.Abrir());
+            comm = new MySqlCommand("select max(id) from Cadastro", Banco.Abrir());
             id = (int)comm.ExecuteScalar();
 
         }
-        //metodo consultar
-        public void Consultar(int  _id)
+        public void Alterar()
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.Connection = Banco.Abrir();
+            comm.CommandType = System.Data.CommandType.StoredProcedure;
+            comm.CommandText = "sp_InsertUpdate";
+            comm.Parameters.AddWithValue("_id", ID);
+            comm.Parameters.AddWithValue("_Nome", Nome);
+            comm.Parameters.AddWithValue("_Email", Email);
+            comm.Parameters.AddWithValue("_acao", MySqlDbType.Int32).Value = 2;
+            comm.ExecuteNonQuery();
+            mensagem = "Cadastro Alterado com Sucesso!";
+
+        }
+        public void Consultar(int _id)
         {
             MySqlCommand comm = new MySqlCommand();
             comm.Connection = Banco.Abrir();
@@ -76,10 +89,15 @@ namespace ti89
                     Email = dr.GetString(2);
                 }
             }
-            
 
-            
+
+
         }
-           
     }
+
 }
+
+
+
+    //metodo consultar
+    
