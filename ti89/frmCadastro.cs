@@ -74,5 +74,14 @@ namespace ti89
             MessageBox.Show(us.mensagem, "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Limpar();
         }
+
+        private void btnExcluir_Click(object sender, EventArgs e)
+        {
+            Cliente us = new Cliente();
+            us.Deletar(Convert.ToInt32(txtId.Text));
+            MessageBox.Show(us.mensagem, "Sistema", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Limpar();
+
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace ti89
 
         //CONSTRUTOR
         public Cliente() { }
-        //alterar
+       
         public Cliente(int nCodigo, string nNome, string nEmail)
         {
             this.ID = nCodigo;
@@ -93,11 +93,22 @@ namespace ti89
 
 
         }
+        //Exclusao
+        //del(insert, delete, update, select
+        public void Deletar(int _id)
+        {
+            MySqlCommand comm = new MySqlCommand();
+            comm.Connection = Banco.Abrir();
+            comm.CommandText = "delete from cadastro where id="+ _id;
+            comm.ExecuteNonQuery();
+            mensagem = "Registro Eliminado com Sucesso!";
+        } 
+
     }
 
 }
 
 
 
-    //metodo consultar
+   
     
